@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brella</title>
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/icons.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -13,7 +14,14 @@
 <body>
     <header>
         <nav class="head-nav">
-            <h1 class="head-nav__logo">Brella</h1>
+            <div class="head-nav__top">
+                <h1 class="head-nav__logo">Brella</h1>
+                <div class="burger-button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
             <ul class="head-nav__menu">
                 <li class="head-nav__link"><a href="#">Our Plan</a></li>
                 <li class="head-nav__link"><a href="#">Employers</a></li>
@@ -28,7 +36,7 @@
                 <span class="icon-arrow-down"></span>
                 <li class="head-nav__elem"><a href="#">EN</a></li>
             </ul>
-        </nav>
+        </nav>               
         <div class="head-wrapper">
             <div class="head-main">
                 <h1>
@@ -329,5 +337,28 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const burgerButton = document.querySelector('.burger-button');
+            const navMenu = document.querySelector('.head-nav__menu');
+            const navExtras = document.querySelector('.head-nav ul:last-of-type');
+
+            burgerButton.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                navExtras.classList.toggle('active');
+                burgerButton.classList.toggle('open');
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!burgerButton.contains(event.target) && 
+                    !navMenu.contains(event.target) && 
+                    !navExtras.contains(event.target)) {
+                    navMenu.classList.remove('active');
+                    navExtras.classList.remove('active');
+                    burgerButton.classList.remove('open');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
